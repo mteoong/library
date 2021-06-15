@@ -50,6 +50,7 @@ h3 {
 
 select[name="order"] {
     font-size: 2rem;
+    cursor: pointer;
 }
 
 h1.book-title {
@@ -68,6 +69,7 @@ h1.book-title {
 
 .add-book:hover {
     background-color: rgb(190, 255, 170);
+    cursor: pointer;
 }
 
 /* ------- Book Grid -------*/
@@ -85,10 +87,11 @@ h1.book-title {
     border-radius: 5px;
     text-align: center;
     height: 200px;
+    position: relative;
 }
 
 h4 {
-    margin: 5px 0;
+    margin: 5px;
     font-size: 1.5rem;
     font-weight: 300;
     text-align: center;
@@ -96,6 +99,15 @@ h4 {
 
 h4.read {
     display: inline-block;
+    margin: 10px 0px;
+}
+
+.delete {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 /* ------- Switch ------- */
@@ -161,6 +173,10 @@ input:checked + .slider:before {
     background-color: rgb(46, 46, 46, 0.5);
 }
 
+.new-book-container.hide {
+    display: none;
+}
+
 .exit {
     position: absolute;
     top: 5px;
@@ -196,7 +212,7 @@ input.new-book {
     width: 340px;
 }
 
-input[type="submit"] {
+#submit {
     border: 0.5px solid gray;
     padding: 10px 10px;
     background-color: rgb(238, 238, 238);
@@ -206,6 +222,7 @@ input[type="submit"] {
     margin: 30px auto;
 }
 
-input[type="submit"]:hover {
+#submit:hover {
     background-color: #2196F3;
+    cursor: pointer;
 }

@@ -29,6 +29,7 @@
         <h3 class="add-book"> + Add Book </h3>
         <div class="book-grid">
           <div class="book">
+            <div class="delete"> ✕ </div>
             <h3> Title </h3>
             <h4> Author </h4>
             <h4> Date Published </h4>
@@ -40,23 +41,25 @@
           </div>
         </div>
     </div>
-    <div class="new-book-container">
+    <div class="new-book-container hide">
       <form class="new-book">
         <div class="exit"> ✕ </div>
         <h1 class="new-book"> Add New Book </h1>
         <label class="new-book">
           Title <br>
-          <input type="text" class="new-book" required>
+          <input type="text" class="new-book" id="title" required>
         </label>
         <label class="new-book">
           Author <br>
-          <input type="text" class="new-book" required>
+          <input type="text" class="new-book" id="author" required>
         </label>
         <label class="new-book">
           Date Published <br>
-          <input type="date" class="new-book" required placeholder="yy-mm-dd">
+          <input type="date" class="new-book" id="date" required placeholder="yy-mm-dd">
         </label>
-        <input type="submit" name="submit" value="Add Book">
+        <button type="submit" id="submit">
+            Add Book
+        </button>
       </form>
     </div>
   <script src="script.js"></script>
