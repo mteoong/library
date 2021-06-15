@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> My Library </title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css" > 
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="content-wrapper">
+        <h1 class="title"> My Library </h1>
+        <div class="toolbar">
+        <h3 class="log" id="total-count"> Total Books: 0 </h3>
+        <h3 class="log" id="read-count"> Read: 0 </h3>
+        <h3 class="log" id="not-read-count"> Not Read: 0 </h3>
+        <br>
+        <h3 class="order"> Order By: </h3>
+        <form class="order">
+          <select name="order">
+          <option value="date-added" selected> Date Added </option>
+          <option value="date-published"> Date Published </option>
+          <option value="alphabetical"> Alphabetical </option>
+          <option value="read"> Read </option>
+          </select>
+        </form> 
+        </div>
+        <h1 class="book-title"> Books </h1>
+        <h3 class="add-book"> + Add Book </h3>
+        <div class="book-grid">
+          <div class="book">
+            <h3> Title </h3>
+            <h4> Author </h4>
+            <h4> Date Published </h4>
+            <h4 class="read"> Read: </h4>
+            <label class="switch">
+              <input type="checkbox">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+    </div>
+    <div class="new-book-container">
+      <form class="new-book">
+        <div class="exit"> ✕ </div>
+        <h1 class="new-book"> Add New Book </h1>
+        <label class="new-book">
+          Title <br>
+          <input type="text" class="new-book" required>
+        </label>
+        <label class="new-book">
+          Author <br>
+          <input type="text" class="new-book" required>
+        </label>
+        <label class="new-book">
+          Date Published <br>
+          <input type="date" class="new-book" required placeholder="yy-mm-dd">
+        </label>
+        <input type="submit" name="submit" value="Add Book">
+      </form>
+    </div>
+  <script src="script.js"></script>
+</body>
+<html>
