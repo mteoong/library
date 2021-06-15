@@ -49,6 +49,7 @@ function addBookToLibrary(e) {
         displayLibrary();
         exitPopUp();
     }
+    saveLocal();
 }
 /*------- Add Books Form Popup -------*/
 const newBookContainer = document.querySelector(".new-book-container");
@@ -63,6 +64,12 @@ const exitForm = document.querySelector(".exit");
 exitForm.addEventListener("click", exitPopUp);
 
 function exitPopUp() {
+    let title = document.querySelector("#title");
+    let author = document.querySelector("#author");
+    let date = document.querySelector("#date");
+    title.value = "";
+    author.value = "";
+    date.value = "";
     newBookContainer.classList.add("hide");
 }
 
@@ -78,15 +85,23 @@ function changeStatus(e) {
     }
     readCount.innerText = `Read: ${read}`;
     notReadCount.innerText = `Not Read: ${unread}`;
+    saveLocal();
 }
 
 /*------- Book Grid -------*/
 const grid = document.querySelector(".book-grid");
 
+function updateLog() {
+    totalCount.innerText = `Total: ${total}`;
+    readCount.innerText = `Read: ${read}`;
+    notReadCount.innerText = `Not Read: ${unread}`;
+}
 //write a function that loops thorugh the array and displays each book on the page. 
 function displayLibrary() {
     resetGrid();
+    updateLog();
     let sorted = sortedLibrary();
+
     for (let book of sorted) {
         const div = document.createElement("div");
         const deleteButton = document.createElement("div");
@@ -111,8 +126,10 @@ function displayLibrary() {
         input.type = "checkbox";
         span.classList.add("slider", "round");
         input.addEventListener("change", changeStatus);
+        deleteButton.addEventListener("click", deleteBook);
 
         grid.append(div);
+        div.append(deleteButton);
         div.append(title);
         div.append(author);
         div.append(datePublished);
@@ -121,6 +138,7 @@ function displayLibrary() {
         switchLabel.append(input);
         switchLabel.append(span);
     }
+    saveLocal();
 }
 
 function resetGrid() {
@@ -156,5 +174,34 @@ function sortedLibrary() {
     return libraryArray;
 }
 /*------- Delete Book -------*/
+function deleteBook(e) {
+    let title = e.target.closest(".book").querySelector("h3").innerText;
+    myLibrary.delete(title);
+    saveLocal();
+    displayLibrary();
+}
 
-/*------- Local Memory -------*/
+/*------- Local Storage -------*/
+function saveLocal() {
+    localStorage.myLibrary = JSON.stringify(Array.from(myLibrary.entries()));
+    localStorage.setItem("total", `${total}`);
+    localStorage.setItem("read", `${read}`);
+    localStorage.setItem("unread", `${unread}`);
+}
+
+function restoreLocal() {
+    try {
+        myLibrary = new Map(JSON.parse(localStorage.myLibrary));
+    } catch (err) {
+        if (myLibrary === null) myLibrary = new Map();
+    }
+    total = parseInt(localStorage.getItem("total"));
+    total = total ? total : 0;
+    read = parseInt(localStorage.getItem("read"));
+    read = read ? read : 0;
+    unread = parseInt(localStorage.getItem("unread"));
+    unread = unread ? unread : 0;
+    displayLibrary();
+}
+
+restoreLocal();
